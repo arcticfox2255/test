@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Plaid Link Page</title>
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+  </head>
+  <body>
+    <button id="link-button">Connect Your Bank</button>
+
+    <script>
+      var linkHandler = Plaid.create({
+        token: "link-sandbox-0554e72e-e34a-4bf5-b7e7-8a40ee9c0d76
+",
+        onSuccess: function(public_token, metadata) {
+          fetch("https://hooks.zapier.com/hooks/catch/22028118/u2cq71g/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ public_token: public_token, metadata: metadata })
+          });
+          alert("Success! You can close this page now.");
+        },
+        onExit: function(err, metadata) {
+          console.log("Plaid Link exited", err, metadata);
+        }
+      });
+      document.getElementById("link-button").onclick = function() {
+        linkHandler.open();
+      };
+    </script>
+  </body>
+</html>
