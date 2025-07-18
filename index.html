@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Plaid Link Page</title>
-    <script src="https://cdn.plaid.com/link/v2/stable/link.html?token=link-sandbox-6b747223-d5c9-432d-bff8-3e91a281fba1&isWebview=false"></script>
+<script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
   </head>
   <body>
     <button id="link-button">Connect Your Bank</button>
@@ -10,7 +10,7 @@
     <script>
       window.onload = function () {
         var linkHandler = Plaid.create({
-          token: "link-sandbox-43472585-467c-4e9a-b556-d6faf3e6793e",
+          token: "link-sandbox-6b747223-d5c9-432d-bff8-3e91a281fba1",
           onSuccess: function(public_token, metadata) {
             const zapierUrl = "https://hooks.zapier.com/hooks/catch/22028118/u2cq71g/";
             const redirectUrl = `${zapierUrl}?public_token=${encodeURIComponent(public_token)}`;
