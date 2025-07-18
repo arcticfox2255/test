@@ -14,8 +14,8 @@
           onSuccess: function(public_token, metadata) {
             const zapierUrl = "https://hooks.zapier.com/hooks/catch/22028118/u2cq71g/";
             const redirectUrl = `${zapierUrl}?public_token=${encodeURIComponent(public_token)}`;
-            window.location.href = redirectUrl;
             alert("Success! You can close this page now.");
+            window.location.href = redirectUrl;
           },
           onExit: function(err, metadata) {
             console.log("Plaid Link exited", err, metadata);
