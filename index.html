@@ -11,12 +11,12 @@
       window.onload = function () {
         var linkHandler = Plaid.create({
           token: "link-sandbox-43472585-467c-4e9a-b556-d6faf3e6793e",
-          onSuccess: function(public_token, metadata) {
-            fetch("https://hooks.zapier.com/hooks/catch/22028118/u2cq71g/", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ public_token: public_token, metadata: metadata })
-            });
+onSuccess: function(public_token, metadata) {
+  const zapierUrl = "https://hooks.zapier.com/hooks/catch/22028118/u2cq71g/";
+  const redirectUrl = `${zapierUrl}?public_token=${encodeURIComponent(public_token)}`;
+  window.location.href = redirectUrl;
+}
+
             alert("Success! You can close this page now.");
           },
           onExit: function(err, metadata) {
